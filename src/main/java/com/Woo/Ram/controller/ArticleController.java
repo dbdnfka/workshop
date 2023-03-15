@@ -1,8 +1,10 @@
 package com.Woo.Ram.controller;
 
 import com.Woo.Ram.dto.ArticleForm;
+import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
 import com.Woo.Ram.repository.ArticleRepository;
+import com.Woo.Ram.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,8 @@ public class ArticleController {
 
     @Autowired // 스프링 부트가 미리 생성해 놓은 객체를 가져다가 자동 연결
     private ArticleRepository articleRepository;
+    @Autowired
+    private CommentService commentService;
     @GetMapping("/articles/new")
     public String newArticleForm(){
         return "articles/new";
@@ -47,8 +51,10 @@ public class ArticleController {
         log.info("id = " + id);
         // 1: id로 데이터를 가져옴
         Article articleEntity = articleRepository.findById(id).orElse(null);
+       List<CommentDto> commentDtos = commentService.comments(id);
         // 2: 가져온 데이터를 모델에 등록
         model.addAttribute("article", articleEntity);
+        model.addAttribute("commentDtos",commentDtos);
         // 3: 보여줄 페이지를 설정
         return "articles/show";
     }

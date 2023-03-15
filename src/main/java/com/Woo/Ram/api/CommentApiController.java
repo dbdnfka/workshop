@@ -1,5 +1,6 @@
 package com.Woo.Ram.api;
 
+import com.Woo.Ram.annotation.RunningTime;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Comment;
 import com.Woo.Ram.service.CommentService;
@@ -42,6 +43,7 @@ public class CommentApiController {
         return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
     }
     // 댓글 삭제
+    @RunningTime
     @DeleteMapping("/api/comments/{id}")
     public ResponseEntity<CommentDto> delete(@PathVariable Long id) {
         // 서비스에게 위임
