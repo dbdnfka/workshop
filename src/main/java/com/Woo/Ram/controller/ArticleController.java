@@ -4,7 +4,6 @@ import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
 import com.Woo.Ram.repository.ArticleRepository;
-import com.Woo.Ram.service.ArticleService;
 import com.Woo.Ram.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,8 +115,8 @@ public class ArticleController {
         // 3: 결과 페이지로 리다이렉트
         return "redirect:/articles";
     }
-    @GetMapping("/")
+    @GetMapping("/main")
     public String index2(Model model){
-        return "/articles/main";
+        return "/main/main";
     }
 }
