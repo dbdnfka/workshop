@@ -30,6 +30,8 @@ public class ArticleController {
         return "articles/new";
     }
 
+
+
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form){
         log.info(form.toString());
@@ -113,5 +115,15 @@ public class ArticleController {
         }
         // 3: 결과 페이지로 리다이렉트
         return "redirect:/articles";
+    }
+    @GetMapping("/")
+    public String index2(Model model){
+        // 1. 모든 Article 가져오기
+        List<Article> articleEntityList = articleRepository.findAll();
+
+        // 2. 가져온 article 묶음 뷰로 전달
+        model.addAttribute("articleList", articleEntityList);
+        // 3. 뷰 페이지를 설정
+        return "articles/index";
     }
 }
