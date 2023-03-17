@@ -1,4 +1,6 @@
-{{>layouts/header}}
+{{>main/main}}
+<div id = "main">
+
 <table class="table">
     <thead>
     <tr>
@@ -6,6 +8,7 @@
         <th scope="col">Title</th>
         <th scope="col">Content</th>
     </tr>
+
     </thead>
     <tbody>
     {{#article}}
@@ -20,7 +23,8 @@
 
 <a href="/articles/{{article.id}}/edit"class = "btn btn-primary">Edit</a>
 <a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete</a>
-<a href="/articles">Go to Article List</a>
+<a href="/articles">홈으로</a>
 
 {{>comments/_comments}}
-{{>layouts/footer}}
+</div>
+{{>main/main}}
