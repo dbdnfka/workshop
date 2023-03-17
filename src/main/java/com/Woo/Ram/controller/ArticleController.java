@@ -118,6 +118,6 @@ public class ArticleController {
     }
     @GetMapping("/")
     public String index2(Model model){
-        return "Template";
+        return "/articles/main";
     }
 }
