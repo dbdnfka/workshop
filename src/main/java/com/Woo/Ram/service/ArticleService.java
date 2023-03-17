@@ -31,8 +31,8 @@ public class ArticleService {
 
     public Article create(ArticleForm dto) {
         Article article = dto.toEntity();
-        if(article.getId()!=null){
-            return  null;
+        if (article.getId() != null) {
+            return null;
         }
         return articleRepository.save(article);
     }
@@ -57,14 +57,14 @@ public class ArticleService {
 
     public Article delete(Long id) {
         //대상 찾기
-        Article target =  articleRepository.findById(id).orElse(null);
+        Article target = articleRepository.findById(id).orElse(null);
         //잘못된 요청 처리
-        if(target == null){
+        if (target == null) {
             return null;
         }
         //대상 삭제
         articleRepository.delete(target);
-        return  target;
+        return target;
     }
 
     @Transactional
@@ -83,5 +83,6 @@ public class ArticleService {
         // 결과값 반환
         return articleList;
     }
-
 }
+
+

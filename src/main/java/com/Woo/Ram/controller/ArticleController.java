@@ -4,6 +4,7 @@ import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
 import com.Woo.Ram.repository.ArticleRepository;
+import com.Woo.Ram.service.ArticleService;
 import com.Woo.Ram.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,6 @@ public class ArticleController {
 
         // 2. 가져온 article 묶음 뷰로 전달
         model.addAttribute("articleList", articleEntityList);
-
         // 3. 뷰 페이지를 설정
         return "articles/index";
     }
