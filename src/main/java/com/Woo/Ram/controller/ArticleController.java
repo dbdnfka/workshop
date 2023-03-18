@@ -119,4 +119,8 @@ public class ArticleController {
     public String index2(Model model){
         return "/main/main";
     }
+    @GetMapping(path = "/copy")
+    public String index3(Model model){
+        return "/main/main_copy";
+    }
 }

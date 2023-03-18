@@ -1,29 +1,40 @@
 {{>main/main}}
 <div id = "main">
-
-<table class="table">
+    {{#article}}
+<table class="table" style="table-layout: fixed">
     <thead>
     <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Title</th>
-        <th scope="col">Content</th>
+        <th scope="col">제목</th>
     </tr>
-
     </thead>
     <tbody>
-    {{#article}}
         <tr>
-            <th>{{id}}</th>
-            <td>{{title}}</td>
-            <td>{{content}}</td>
-        </tr>
-    {{/article}}
+            <td style="word-break: break-all">{{title}}</td>
+
     </tbody>
 </table>
+        <table class="table" style="table-layout: fixed">
+            <thead>
+            <tr>
+<!--                <th scope="col">ID</th>-->
+<!--                <th scope="col">Title</th>-->
+                <th scope="col">내용</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+<!--                <th style="word-break: break-all">{{id}}</th>-->
+<!--                <td style="word-break: break-all">{{title}}</td>-->
+                <td style="word-break: break-all">{{content}}</td>
+            </tr>
+            </tbody>
+        </table>
 
-<a href="/articles/{{article.id}}/edit"class = "btn btn-primary">Edit</a>
-<a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete</a>
-<a href="/articles">홈으로</a>
+    {{/article}}
+<a href="/articles/{{article.id}}/edit"class = "button primary small2">Edit</a>
+    <a href="/articles"class="button small2">뒤로</a>
+<a href="/articles/{{article.id}}/delete" class="button small3">Delete</a>
+
 
 {{>comments/_comments}}
 </div>

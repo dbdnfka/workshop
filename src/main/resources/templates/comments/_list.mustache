@@ -1,9 +1,13 @@
 
+
+{{>layouts/header}}
+
 <div id="comments-list">
     {{#commentDtos}}
         <div class="card m-2" id="comments-{{id}}">
             <div class="card-header">
                 {{nickname}}
+                <!-- Button trigger modal -->
                 <button type="button"
                         class="btn btn-sm btn-outline-primary"
                         data-bs-toggle="modal"
@@ -20,9 +24,11 @@
             <div class="card-body">
                 {{body}}
             </div>
+
         </div>
     {{/commentDtos}}
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="comment-edit-modal" tabindex="-1">
@@ -33,28 +39,54 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- 댓글 수정 폼-->
+                <!-- 댓글 수정 폼 추가 -->
                 <form>
-                    <!-- 닉네임 입력 -->
+                    <!-- 닉네임 -->
                     <div class="mb-3">
                         <label class="form-label">닉네임</label>
                         <input type="text" class="form-control form-control-sm" id="edit-comment-nickname">
                     </div>
-                    <!-- 댓글 본문 입력 -->
+                    <!-- 댓글 본문 -->
                     <div class="mb-3">
                         <label class="form-label">댓글 내용</label>
                         <textarea type="text" class="form-control form-control-sm" rows="3" id="edit-comment-body"></textarea>
                     </div>
-                    <!-- 히든 인풋 -->
+                    <!-- 히든값 -->
                     <input type="hidden" id="edit-comment-id">
                     <input type="hidden" id="edit-comment-article-id">
-                    <!-- 전송 버튼 -->
+                    <!-- 전송버튼 -->
                     <button type="button" class="btn btn-outline-primary btn-sm" id="comment-update-btn">수정 완료</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{>layouts/header}}
+
+
 <!-- 모달 이벤트 처리 -->
 <Script>
     {

@@ -3,29 +3,34 @@
 <div id = "main">
     <section id = "one">
         <header class="major">
-            <h1>게시글 작성</h1>
+            <h1>전체 글 보기</h1>
         </header>
-<table class="table">
-
+        <div class="table-wrapper">
+<table class="table-wrapper" style="table-layout: fixed" >
+    <colgroup><col style="width:50%;">
     <thead>
     <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Title</th>
+        <th scope="col">제목</th>
+        <th scope="col">게시글 번호</th>
         <th scope="col">Content</th>
     </tr>
     </thead>
+    </colgroup>
     <tbody>
     {{#articleList}}
         <tr>
-            <th>{{id}}</th>
-            <td><a href="/articles/{{id}}">{{title}}</a></td>
-            <td>{{content}}</td>
+            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap"><a href="/articles/{{id}}">{{title}}</a></td>
+            <th style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{id}}</th>
+
+            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{content}}</td>
         </tr>
     {{/articleList}}
     </tbody>
-</table>
+</table></div>
 
 <a href="/articles/new">글 쓰기</a>
     </section>
+
 </div>
+
 {{>main/main}}
