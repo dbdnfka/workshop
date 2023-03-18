@@ -132,11 +132,11 @@ public class ArticleController {
         // 3: 결과 페이지로 리다이렉트
         return "redirect:/articles";
     }
-    @GetMapping(path = "/")
+    @GetMapping("/")
     public String index2(Model model){
         return "/main/main";
     }
-    @GetMapping(path = "/copy")
+    @GetMapping("/copy")
     public String index3(Model model){
         return "/main/main_copy";
     }
