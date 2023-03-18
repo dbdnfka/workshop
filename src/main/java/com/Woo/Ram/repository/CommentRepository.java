@@ -15,4 +15,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
             nativeQuery = true)
     List<Comment> findByArticleId(Long articleId);
     List<Comment> findByNickname(String nickname);
+
 }

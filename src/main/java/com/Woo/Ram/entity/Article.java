@@ -1,10 +1,13 @@
 package com.Woo.Ram.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity // DB가 해당 객체를 인식 가능
 @AllArgsConstructor

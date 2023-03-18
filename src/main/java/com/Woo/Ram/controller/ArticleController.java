@@ -3,13 +3,18 @@ package com.Woo.Ram.controller;
 import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
+import com.Woo.Ram.entity.Comment;
 import com.Woo.Ram.repository.ArticleRepository;
 import com.Woo.Ram.repository.CommentRepository;
 import com.Woo.Ram.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +29,11 @@ import java.util.List;
 @Slf4j //로깅을 위한 골뱅이(어노테이션)
 public class ArticleController {
 
+
     @Autowired // 스프링 부트가 미리 생성해 놓은 객체를 가져다가 자동 연결
     private ArticleRepository articleRepository;
+    @Autowired // 스프링 부트가 미리 생성해 놓은 객체를 가져다가 자동 연결
+    private ArticleRepository commentRepository;
     @Autowired
     private CommentService commentService;
     @GetMapping("/articles/new")
@@ -112,6 +120,9 @@ public class ArticleController {
         // 1: 삭제 대상을 가져옴
         Article target = articleRepository.findById(id).orElse(null);
 
+
+//        CommentDto deletedDto = commentService.delete(id);
+//        ResponseEntity.status(HttpStatus.OK).body(deletedDto);
         log.info(target.toString());
         // 2: 대상을 삭제
         if (target != null) {

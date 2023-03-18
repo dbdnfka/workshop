@@ -40,6 +40,7 @@ public class Comment {
                 article,
                 dto.getNickname(),
                 dto.getBody()
+
         );
     }
 

@@ -2,7 +2,9 @@ package com.Woo.Ram.service;
 
 import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.entity.Article;
+import com.Woo.Ram.entity.Comment;
 import com.Woo.Ram.repository.ArticleRepository;
+import com.Woo.Ram.repository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,10 +22,12 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+
 public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
-
+    @Autowired
+    private CommentRepository commentRepository;
     public List<Article> index() {
         return articleRepository.findAll();
     }
@@ -68,6 +72,7 @@ public class ArticleService {
             return null;
         }
         //대상 삭제
+
         articleRepository.delete(target);
         return target;
     }

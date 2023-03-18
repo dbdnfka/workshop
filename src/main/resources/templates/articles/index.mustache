@@ -1,36 +1,41 @@
 {{>main/main}}
-
+{{>layouts/header}}
 <div id = "main">
     <section id = "one">
         <header class="major">
             <h1>전체 글 보기</h1>
+            <hr/>
+        <br/>
         </header>
         <div class="table-wrapper">
 <table class="table-wrapper" style="table-layout: fixed" >
-    <colgroup><col style="width:50%;">
+    <colgroup><col style="width:5%;"><col style="width:60%;"><col style="width:10%;"><col style="width:10%;"><col style="width:5%;">
     <thead>
     <tr>
+        <th scope="col">NO</th>
         <th scope="col">제목</th>
-        <th scope="col">게시글 번호</th>
-        <th scope="col">Content</th>
+        <th scope="col">작성자</th>
+        <th scope="col">작성일</th>
+        <th scope="col">조회</th>
     </tr>
     </thead>
     </colgroup>
     <tbody>
     {{#articleList}}
         <tr>
-            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap"><a href="/articles/{{id}}">{{title}}</a></td>
             <th style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{id}}</th>
+            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap;"><a href="/articles/{{id}}" style="text-decoration: none;color: #49bf9d">{{title}}</a></td>
 
+            <th style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{id}}</th>
+            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{content}}</td>
             <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{content}}</td>
         </tr>
     {{/articleList}}
     </tbody>
 </table></div>
 
-<a href="/articles/new">글 쓰기</a>
-    </section>
+<a href="/articles/new" style=" text-decoration: none; color: #49bf9d">글 쓰기</a>
+
 
 </div>
 
-{{>main/main}}
