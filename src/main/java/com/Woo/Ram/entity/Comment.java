@@ -1,10 +1,9 @@
 package com.Woo.Ram.entity;
 
 import com.Woo.Ram.dto.CommentDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -19,6 +18,7 @@ public class Comment {
     private Long id;
 
     @ManyToOne // 해당 댓글 엔티티 여러개가, 하나의 Article에 연관된다.
+    @OnDelete(action= OnDeleteAction.CASCADE)
     @JoinColumn(name = "article_id") // "article_id" 컬럼에 Article의 대표값을 저장
     private Article article;
 
@@ -53,4 +53,5 @@ public class Comment {
         if (dto.getBody() != null)
             this.body = dto.getBody();
     }
+
 }

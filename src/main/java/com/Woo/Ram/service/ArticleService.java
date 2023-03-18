@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,6 +57,8 @@ public class ArticleService {
         Article updated = articleRepository.save(target);
         return updated;
     }
+
+
 
     public Article delete(Long id) {
         //대상 찾기

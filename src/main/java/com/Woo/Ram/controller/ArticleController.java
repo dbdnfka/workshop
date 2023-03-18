@@ -4,6 +4,7 @@ import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
 import com.Woo.Ram.repository.ArticleRepository;
+import com.Woo.Ram.repository.CommentRepository;
 import com.Woo.Ram.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Controller
@@ -101,11 +105,13 @@ public class ArticleController {
         return "redirect:/articles/" + articleEntity.getId();
 
     }
+
     @GetMapping("/articles/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes rttr) {
         log.info("삭제 요청이 들어왔습니다!!");
         // 1: 삭제 대상을 가져옴
         Article target = articleRepository.findById(id).orElse(null);
+
         log.info(target.toString());
         // 2: 대상을 삭제
         if (target != null) {
