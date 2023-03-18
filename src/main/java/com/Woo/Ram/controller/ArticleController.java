@@ -3,26 +3,17 @@ package com.Woo.Ram.controller;
 import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
-import com.Woo.Ram.entity.Comment;
 import com.Woo.Ram.repository.ArticleRepository;
-import com.Woo.Ram.repository.CommentRepository;
 import com.Woo.Ram.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 @Controller
@@ -134,7 +125,8 @@ public class ArticleController {
     }
     @GetMapping("/main")
     public String index2(Model model){
-        return "/main/main";
+        model.addAttribute("username","우람");
+        return "/articles/main";
     }
     @GetMapping("/copy")
     public String index3(Model model){
