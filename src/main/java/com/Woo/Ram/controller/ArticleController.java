@@ -34,7 +34,10 @@ public class ArticleController {
 
     @GetMapping("/")
     public String index2(Model model){
-        model.addAttribute("username","우람");
+        List<Article> articleEntityList = articleRepository.findAll();
+
+        // 2. 가져온 article 묶음 뷰로 전달
+        model.addAttribute("articleList", articleEntityList);
         return "/articles/index";
     }
 
