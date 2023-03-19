@@ -126,7 +126,7 @@ public class ArticleController {
     @GetMapping("/main")
     public String index2(Model model){
         model.addAttribute("username","우람");
-        return "/articles/main";
+        return "/articles/index";
     }
     @GetMapping("/copy")
     public String index3(Model model){
