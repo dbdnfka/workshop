@@ -32,7 +32,11 @@ public class ArticleController {
         return "articles/new";
     }
 
-
+    @GetMapping("/")
+    public String index2(Model model){
+        model.addAttribute("username","우람");
+        return "/articles/index";
+    }
 
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form){
@@ -123,11 +127,7 @@ public class ArticleController {
         // 3: 결과 페이지로 리다이렉트
         return "redirect:/articles";
     }
-    @GetMapping("/")
-    public String index2(Model model){
-        model.addAttribute("username","우람");
-        return "/articles/index";
-    }
+
     @GetMapping("/copy")
     public String index3(Model model){
         return "/main/main_copy";
