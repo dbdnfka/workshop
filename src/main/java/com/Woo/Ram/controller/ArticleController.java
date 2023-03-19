@@ -35,7 +35,7 @@ public class ArticleController {
     }
 
 
-    @RequestMapping(value= "/main", method = RequestMethod.GET)
+    @PostMapping("/main")
     public String index2(Model model){
 //        List<Article> articleEntityList = articleRepository.findAll();
 //
