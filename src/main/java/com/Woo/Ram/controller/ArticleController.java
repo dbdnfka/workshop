@@ -35,13 +35,13 @@ public class ArticleController {
     }
 
 
-    @PostMapping("/main")
+    @RequestMapping(value= "/main", method = RequestMethod.GET)
     public String index2(Model model){
 //        List<Article> articleEntityList = articleRepository.findAll();
 //
 //        // 2. 가져온 article 묶음 뷰로 전달
 //        model.addAttribute("articleList", articleEntityList);
-        return "/articles/main";
+        return "articles/main";
     }
 
     @PostMapping("/articles/create")
@@ -147,6 +147,6 @@ public class ArticleController {
 
     @GetMapping("/copy")
     public String index3(Model model){
-        return "/main/main_copy";
+        return "main/main_copy";
     }
 }
