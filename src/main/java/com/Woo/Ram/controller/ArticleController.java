@@ -3,7 +3,10 @@ package com.Woo.Ram.controller;
 import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
+import com.Woo.Ram.entity.Comment;
 import com.Woo.Ram.repository.ArticleRepository;
+import com.Woo.Ram.repository.CommentRepository;
+import com.Woo.Ram.service.ArticleService;
 import com.Woo.Ram.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -59,10 +63,12 @@ public class ArticleController {
     }
     @GetMapping("/articles/{id}")
     public String show(@PathVariable Long id, Model model) {
+
         log.info("id = " + id);
         // 1: id로 데이터를 가져옴
         Article articleEntity = articleRepository.findById(id).orElse(null);
-       List<CommentDto> commentDtos = commentService.comments(id);
+        List<CommentDto> commentDtos = commentService.comments(id);
+        articleRepository.updateView(id);
         // 2: 가져온 데이터를 모델에 등록
         model.addAttribute("article", articleEntity);
         model.addAttribute("commentDtos",commentDtos);
@@ -112,20 +118,29 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/{id}/delete")
-    public String delete(@PathVariable Long id, RedirectAttributes rttr) {
+    public String delete(@PathVariable Long id, RedirectAttributes rttr, HttpServletRequest request) {
         log.info("삭제 요청이 들어왔습니다!!");
+        log.info(id.toString());
+
         // 1: 삭제 대상을 가져옴
         Article target = articleRepository.findById(id).orElse(null);
-
-
+        List A = commentService.delete2(id);
+        log.info(A.toString());log.info(A.toString());log.info(A.toString());log.info(A.toString());
 //        CommentDto deletedDto = commentService.delete(id);
 //        ResponseEntity.status(HttpStatus.OK).body(deletedDto);
         log.info(target.toString());
-        // 2: 대상을 삭제
-        if (target != null) {
-            articleRepository.delete(target);
-            rttr.addFlashAttribute("msg","삭제가 완료되었습니다.");
+        if(A.size()>0){
+            rttr.addFlashAttribute("msg","댓글이 있는 게시글은 삭제할 수 없습니다.");
+            return "redirect:/articles/{id}";
         }
+        // 2: 대상을 삭제
+        else{
+        if (target != null) {
+
+            articleRepository.delete(target);
+
+            rttr.addFlashAttribute("msg","삭제가 완료되었습니다.");
+        }}
         // 3: 결과 페이지로 리다이렉트
         return "redirect:/articles";
     }

@@ -93,6 +93,10 @@ public class ArticleService {
         // 결과값 반환
         return articleList;
     }
+    @Transactional
+    public int updateView(Long id){
+        return articleRepository.updateView(id);
+    }
 }
 
 

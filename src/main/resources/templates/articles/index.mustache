@@ -3,32 +3,32 @@
 <div id = "main">
     <section id = "one">
         <header class="major">
-            <h1>전체 글 보기2</h1>
+            <h1>전체 글 보기</h1>
             <hr/>
         <br/>
         </header>
         <div class="table-wrapper">
 <table class="table-wrapper" style="table-layout: fixed" >
-    <colgroup><col style="width:5%;"><col style="width:60%;"><col style="width:10%;"><col style="width:10%;"><col style="width:5%;">
+    <colgroup><col style="width:5%;"><col style="width:60%;"><col style="width:10%;">
     <thead>
     <tr>
         <th scope="col">NO</th>
         <th scope="col">제목</th>
         <th scope="col">작성자</th>
         <th scope="col">작성일</th>
-        <th scope="col">조회</th>
+        <th scope="col">조회수</th>
     </tr>
     </thead>
     </colgroup>
     <tbody>
     {{#articleList}}
         <tr>
-            <th style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{id}}</th>
-            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap;"><a href="/articles/{{id}}" style="text-decoration: none;color: #49bf9d">{{title}}</a></td>
+            <th style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap;text-align: center">{{id}}</th>
+            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap;"><a href="/articles/{{id}}" style="text-decoration: none;color: #49bf9d;text-align: center">{{title}}</a></td>
 
-            <th style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{id}}</th>
-            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{content}}</td>
-            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap">{{content}}</td>
+            <th style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap;text-align: center">{{id}}</th>
+            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap;text-align: center">{{modifiedDate}}</td>
+            <td style="text-overflow: ellipsis; overflow: hidden;white-space: nowrap;text-align: center">{{view}}</td>
         </tr>
     {{/articleList}}
     </tbody>
