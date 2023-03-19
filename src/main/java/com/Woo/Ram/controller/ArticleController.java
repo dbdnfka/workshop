@@ -38,7 +38,7 @@ public class ArticleController {
 
         // 2. 가져온 article 묶음 뷰로 전달
         model.addAttribute("articleList", articleEntityList);
-        return "/articles/index";
+        return "redirect:/articles/";
     }
 
     @PostMapping("/articles/create")
