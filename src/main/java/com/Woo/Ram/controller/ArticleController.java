@@ -34,11 +34,11 @@ public class ArticleController {
 
     @GetMapping("/")
     public String index2(Model model){
-        List<Article> articleEntityList = articleRepository.findAll();
-
-        // 2. 가져온 article 묶음 뷰로 전달
-        model.addAttribute("articleList", articleEntityList);
-        return "redirect:/articles/";
+//        List<Article> articleEntityList = articleRepository.findAll();
+//
+//        // 2. 가져온 article 묶음 뷰로 전달
+//        model.addAttribute("articleList", articleEntityList);
+        return "/articles/main";
     }
 
     @PostMapping("/articles/create")
