@@ -123,7 +123,7 @@ public class ArticleController {
         // 3: 결과 페이지로 리다이렉트
         return "redirect:/articles";
     }
-    @GetMapping("/main")
+    @GetMapping("/")
     public String index2(Model model){
         model.addAttribute("username","우람");
         return "/articles/index";
