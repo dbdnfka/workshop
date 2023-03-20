@@ -1,0 +1,13 @@
+package com.Woo.Ram.mapper;
+
+import com.Woo.Ram.model.MemberVO;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface MemberMapper {
+    //회원가입
+    public void memberJoin(MemberVO member);
+
+    // 아이디 중복 검사
+    public int idCheck(String memberId);
+}
