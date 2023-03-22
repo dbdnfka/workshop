@@ -82,7 +82,7 @@
                 <div class="address_input_1_wrap">
                     <div class="address_input_1_box">
                         <input class="address_input_1"  name="addr1" id="addr1" type="text" disabled="readonly" value="tt" >
-                        $('.address_input_1').val('이름을 입력하세요');
+
 
                     </div>
                     <div class="address_button" onclick="execution_daum_address()">
@@ -112,6 +112,8 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     /* 유효성 검사 통과유무 변수 */
+    
+    $('.address_input_1').val('이름을 입력하세요');
     var idCheck = false;            // 아이디
     var idckCheck = false;            // 아이디 중복 검사
     var pwCheck = false;            // 비번
