@@ -81,7 +81,7 @@
                 <div class="address_name">주소</div>
                 <div class="address_input_1_wrap">
                     <div class="address_input_1_box">
-                        <input  class="address_input_1" name="memberAddr1" disabled="readonly" value=" " >
+                        <input id="add1 class="address_input_1" name="memberAddr1" disabled="readonly" value=" " >
 
                     </div>
                     <div class="address_button" onclick="execution_daum_address()">
@@ -91,7 +91,7 @@
                 </div>
                 <div class ="address_input_2_wrap">
                     <div class="address_input_2_box">
-                        <input  class="address_input_2" name="memberAddr2" disabled="readonly" value=" ">
+                        <input  id="add2" class="address_input_2" name="memberAddr2" disabled="readonly" value=" ">
                        
                     </div>
                 </div>
@@ -303,8 +303,8 @@
                     //document.getElementById("address_input_3").value = '';
                 }
 
-                //document.getElementById('address_input_1').value = data.zonecode;
-                //document.getElementById("address_input_2").value = addr;
+                document.getElementById('add1').value = data.zonecode;
+                document.getElementById("add2").value = addr;
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 //$(".address_input_1").val(data.zonecode);
                 //$("[name=memberAddr1]").val(data.zonecode);    // 대체가능
