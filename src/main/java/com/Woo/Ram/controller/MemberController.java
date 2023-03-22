@@ -28,6 +28,7 @@ public class MemberController {
     public String joinPOST(MemberVO member) throws Exception{
 
         logger.info("join 진입");
+        logger.info(member.toString());
 
         // 회원가입 서비스 실행
         memberService.memberJoin(member);
@@ -38,7 +39,7 @@ public class MemberController {
 
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public void joinGET() {
         logger.info("로그인 페이지 진입");
 
