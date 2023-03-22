@@ -81,7 +81,7 @@
                 <div class="address_name">주소</div>
                 <div class="address_input_1_wrap">
                     <div class="address_input_1_box">
-                        <input class="address_input_1"  name="addr1" id="addr1" type="text" disabled="readonly" value="ta" >
+                        <input class="address_input_1"  name="memberAddr1" id="addr1" type="text" disabled="readonly" value="ta" >
 
 
                     </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class ="address_input_2_wrap">
                     <div class="address_input_2_box">
-                        <input class="address_input_2"  name="addr2" id="addr2"  type="text" disabled="readonly" value="taa"  >
+                        <input class="address_input_2"  name="memberAddr2" id="addr2"  type="text" disabled="readonly" value="taa"  >
                        
                     </div>
                 </div>
@@ -313,9 +313,9 @@
                 //$("[name=addr2]").val(addr);
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 //$(".address_input_1").val(data.zonecode);
-                //$("[name=memberAddr1]").val(data.zonecode);    // 대체가능
+                $("[name=memberAddr1]").val(data.zonecode);    // 대체가능
                 //$(".address_input_2").val(addr);
-                //$("[name=memberAddr2]").val(addr);            // 대체가능
+                $("[name=memberAddr2]").val(addr);            // 대체가능
                 // 커서를 상세주소 필드로 이동한다.
                 // 상세주소 입력란 disabled 속성 변경 및 커서를 상세주소 필드로 이동한다.
                 
