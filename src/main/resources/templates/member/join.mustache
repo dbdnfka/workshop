@@ -184,8 +184,8 @@
             }
             /* 최종 유효성 검사 */
             if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&mailCheck&&addressCheck ){
-                $("#join_form").attr("action", "/member/join");
                 $("#join_form").submit();
+                $("#join_form").attr("action", "/member/join");
 
             }
             alert(id+ addr1 );
@@ -287,29 +287,29 @@
                     if(extraAddr !== ''){
                         extraAddr = ' (' + extraAddr + ')';
                     }
-                    document.getElementById("address_input_3").value = extraAddr;
+                    //document.getElementById("address_input_3").value = extraAddr;
                     // 조합된 참고항목을 해당 필드에 넣는다.
                     // 주소변수 문자열과 참고항목 문자열 합치기
-                    //addr += extraAddr;
+                    addr += extraAddr;
 
                 } else {
-                    //addr += ' ';
-                    document.getElementById("address_input_3").value = '';
+                    addr += ' ';
+                    //document.getElementById("address_input_3").value = '';
                 }
 
-                document.getElementById('address_input_1').value = data.zonecode;
-                document.getElementById("address_input_2").value = addr;
+                //document.getElementById('address_input_1').value = data.zonecode;
+                //document.getElementById("address_input_2").value = addr;
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                //$(".address_input_1").val(data.zonecode);
+                $(".address_input_1").val(data.zonecode);
                 //$("[name=memberAddr1]").val(data.zonecode);    // 대체가능
-                //$(".address_input_2").val(addr);
+                $(".address_input_2").val(addr);
                 //$("[name=memberAddr2]").val(addr);            // 대체가능
                 // 커서를 상세주소 필드로 이동한다.
                 // 상세주소 입력란 disabled 속성 변경 및 커서를 상세주소 필드로 이동한다.
                 
-                document.getElementById("address_input_3").focus();
-                //$(".address_input_3").attr("readonly",false);
-                //$(".address_input_3").focus();
+                //document.getElementById("address_input_3").focus();
+                $(".address_input_3").attr("readonly",false);
+                $(".address_input_3").focus();
 
 
             }
