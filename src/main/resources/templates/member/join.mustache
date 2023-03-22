@@ -81,7 +81,7 @@
                 <div class="address_name">주소</div>
                 <div class="address_input_1_wrap">
                     <div class="address_input_1_box">
-                        <input id="add1 class="address_input_1" name="memberAddr1" disabled="readonly" value=" " >
+                        <input type="text" id="add1" placeholder="우편번호">
 
                     </div>
                     <div class="address_button" onclick="execution_daum_address()">
@@ -91,13 +91,13 @@
                 </div>
                 <div class ="address_input_2_wrap">
                     <div class="address_input_2_box">
-                        <input  id="add2" class="address_input_2" name="memberAddr2" disabled="readonly" value=" ">
+                        <input type="text" id="add2" placeholder="주소">
                        
                     </div>
                 </div>
                 <div class ="address_input_3_wrap">
                     <div class="address_input_3_box">
-                        <input class="address_input_3" name="memberAddr3">
+                        <input type="text" id="idd3" name="tel2" value=" " >
                     </div>
                 </div>
                 <span class="final_addr_ck">주소를 입력해주세요.</span>
@@ -293,14 +293,14 @@
                     if(extraAddr !== ''){
                         extraAddr = ' (' + extraAddr + ')';
                     }
-                    //document.getElementById("address_input_3").value = extraAddr;
+                    document.getElementById("add3").value = extraAddr;
                     // 조합된 참고항목을 해당 필드에 넣는다.
                     // 주소변수 문자열과 참고항목 문자열 합치기
-                    addr += extraAddr;
+                    //addr += extraAddr;
 
                 } else {
-                    addr += ' ';
-                    //document.getElementById("address_input_3").value = '';
+                    //addr += ' ';
+                    document.getElementById("add3").value = '';
                 }
 
                 document.getElementById('add1').value = data.zonecode;
@@ -313,7 +313,7 @@
                 // 커서를 상세주소 필드로 이동한다.
                 // 상세주소 입력란 disabled 속성 변경 및 커서를 상세주소 필드로 이동한다.
                 
-                //document.getElementById("address_input_3").focus();
+                document.getElementById("address_input_3").focus();
                 $(".address_input_3").attr("readonly",false);
                 $(".address_input_3").focus();
 
