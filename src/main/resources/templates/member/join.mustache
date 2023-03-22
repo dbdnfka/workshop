@@ -287,12 +287,14 @@
                     if(extraAddr !== ''){
                         extraAddr = ' (' + extraAddr + ')';
                     }
+                    document.getElementById("address_input_3").value = extraAddr;
                     // 조합된 참고항목을 해당 필드에 넣는다.
                     // 주소변수 문자열과 참고항목 문자열 합치기
-                    addr += extraAddr;
+                    //addr += extraAddr;
 
                 } else {
-                    addr += ' ';
+                    //addr += ' ';
+                    document.getElementById("address_input_3").value = '';
                 }
 
                 document.getElementById('address_input_1').value = data.zonecode;
@@ -305,7 +307,7 @@
                 // 커서를 상세주소 필드로 이동한다.
                 // 상세주소 입력란 disabled 속성 변경 및 커서를 상세주소 필드로 이동한다.
                 
-                document.getElementById(".address_input_3").focus();
+                document.getElementById("address_input_3").focus();
                 //$(".address_input_3").attr("readonly",false);
                 //$(".address_input_3").focus();
 
