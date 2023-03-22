@@ -81,7 +81,7 @@
                 <div class="address_name">주소</div>
                 <div class="address_input_1_wrap">
                     <div class="address_input_1_box">
-                        <input  class="address_input_1" name="memberAddr1" disabled="readonly" >
+                        <input  class="address_input_1" name="memberAddr1" disabled="readonly" value=" " >
 
                     </div>
                     <div class="address_button" onclick="execution_daum_address()">
@@ -91,7 +91,7 @@
                 </div>
                 <div class ="address_input_2_wrap">
                     <div class="address_input_2_box">
-                        <input  class="address_input_2" name="memberAddr2" disabled="readonly">
+                        <input  class="address_input_2" name="memberAddr2" disabled="readonly" value=" ">
                        
                     </div>
                 </div>
@@ -131,6 +131,7 @@
                 var name = $('.user_input').val();            // 이름 입력란
                 var mail = $('.mail_input').val();
                 var addr1 =  $('.address_input_1').val();    // 이메일 입력란
+                
                 var addr = $('.address_input_3').val();        // 주소 입력란
 
                 /* 아이디 유효성검사 */
