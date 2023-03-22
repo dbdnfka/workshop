@@ -184,8 +184,10 @@
             }
             /* 최종 유효성 검사 */
             if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&mailCheck&&addressCheck ){
-                $("#join_form").submit();
+               
+                alert(addr1 );
                 $("#join_form").attr("action", "/member/join");
+                $("#join_form").submit();
 
             }
             alert(id+ addr1 );
