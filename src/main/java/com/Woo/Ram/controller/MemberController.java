@@ -29,7 +29,6 @@ public class MemberController {
 
         logger.info("join 진입");
         logger.info(member.toString());
-
         // 회원가입 서비스 실행
         memberService.memberJoin(member);
 
