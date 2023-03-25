@@ -103,7 +103,7 @@ public class MemberController {
                 int admin = members.getAdminCk();
                 //logger.info(String.valueOf(admin));
                 if (admin == 1) {
-                    logger.info(lvo.toString());
+//                    logger.info(lvo.toString());
                     rttr.addFlashAttribute("admin", admin);
                 }
                 rttr.addFlashAttribute("members", members);
