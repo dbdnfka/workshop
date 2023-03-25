@@ -12,6 +12,11 @@
         select count(*) from book_member where memberId = #{memberId}
 
     </select>
+    <select id="memberLogin" resultType="com.Woo.Ram.model.MemberVO">
+
+        select memberId, memberPw, memberName, adminck, money, point from book_member where memberId = #{memberId}
+
+    </select>
 </mapper>
 <!--<beans xmlns="http://www.springframework.org/schema/beans"-->
 <!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->

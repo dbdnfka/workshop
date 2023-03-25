@@ -19,8 +19,16 @@ public class ArticleForm {
 
     private String title;
     private String content;
+    private String writer;
+    public String getWriter(){
+        return writer;
+    }
+    public  void setWriter(String writer){
+        this.writer=writer;
+    }
 
     public Article toEntity() {
-        return new Article(id, title, content );
+        return new Article(id, title, content,writer);
     }
+
 }

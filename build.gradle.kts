@@ -26,6 +26,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-mustache")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-parent:2.0.5.RELEASE")
+
 	implementation(group = "org.apache.httpcomponents", name= "httpclient", version= "4.5.13")
 
 	runtimeOnly("com.h2database:h2")
@@ -33,7 +36,6 @@ dependencies {
 	implementation("net.nurigo:javaSDK:2.2")
 	implementation("javax.mail:mail:1.4.7")
 	implementation("org.springframework:spring-context-support:5.2.3.RELEASE")
-
 
 }
 

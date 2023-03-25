@@ -28,4 +28,7 @@ public abstract class Date {
     private LocalDate modifiedDate;
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
+
+
+
 }

@@ -24,4 +24,6 @@ public interface ArticleRepository extends CrudRepository<Article, Long> {
     @Query("update Article p set p.view = p.view + 1 where p.id = :id")
     int updateView(Long id);
 
+
+
 }

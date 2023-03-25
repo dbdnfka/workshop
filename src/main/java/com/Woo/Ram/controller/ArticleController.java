@@ -4,6 +4,7 @@ import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
 import com.Woo.Ram.entity.Comment;
+import com.Woo.Ram.model.MemberVO;
 import com.Woo.Ram.repository.ArticleRepository;
 import com.Woo.Ram.repository.CommentRepository;
 import com.Woo.Ram.service.ArticleService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -45,19 +47,25 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/create")
-    public String createArticle(ArticleForm form){
-        log.info(form.toString());
+    public String createArticle(ArticleForm form,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        MemberVO mem = (MemberVO) session.getAttribute("member");
+        form.setWriter(mem.getMemberName());
+        log.info(mem+"000");
+        log.info(form.toString()+"1");
         //System.out.println(form.toString());
 
         // 1. Dto를 변환 Entity로
         Article article = form.toEntity();
-        log.info(article.toString());
+        log.info(article.toString()+"2");
         //System.out.println(article.toString());
 
         //2. Repository에게 Entity를 DB안에 저장하게 함
         Article saved = articleRepository.save(article);
-        log.info(saved.toString());
+        log.info(saved.toString()+"3");
         //System.out.println(saved.toString());
+
+
 
         return "redirect:/articles/"+ saved.getId();
     }
@@ -77,7 +85,11 @@ public class ArticleController {
     }
 
     @GetMapping("/articles")
-    public String index(Model model){
+    public String index(Model model,HttpServletRequest request,RedirectAttributes rttr) throws Exception{
+//        HttpSession session = request.getSession();
+//        MemberVO members = (MemberVO) session.getAttribute("member");
+//        rttr.addFlashAttribute("members", members);
+//        System.out.println(members+"asdasda");
         // 1. 모든 Article 가져오기
         List<Article> articleEntityList = articleRepository.findAll();
 

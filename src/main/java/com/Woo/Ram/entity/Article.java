@@ -28,12 +28,17 @@ public class Article extends Date {
     @Column
     private String content;
 
+    @Column
+    private String writer;
+
 
     public void patch(Article article) {
         if (article.title != null)
             this.title = article.title;
         if (article.content != null)
             this.content = article.content;
+        if (article.writer != null)
+            this.writer = article.writer;
     }
 
 }
