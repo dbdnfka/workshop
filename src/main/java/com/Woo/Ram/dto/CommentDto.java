@@ -22,6 +22,11 @@ public class CommentDto {
     private  String nickname;
     private  String body;
 
+    public void setNickname(String nickname){
+        this.nickname=nickname;
+
+    }
+
     public static CommentDto createCommentDto(Comment comment) {
         return new CommentDto(
                 comment.getId(),

@@ -4,12 +4,15 @@ package com.Woo.Ram.service;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
 import com.Woo.Ram.entity.Comment;
+import com.Woo.Ram.model.MemberVO;
 import com.Woo.Ram.repository.ArticleRepository;
 import com.Woo.Ram.repository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +34,13 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentDto create(Long articleId, CommentDto dto) {
+    public CommentDto create(Long articleId, CommentDto dto,HttpServletRequest request) {
 
+        HttpSession session = request.getSession();
+        MemberVO mem = (MemberVO) session.getAttribute("member");
+        if(mem.getMemberName()!=null){
+        dto.setNickname(mem.getMemberName());}
+        else {dto.setNickname("방문자");}
         //게시글 조회 및 예외 발생
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(() -> new IllegalArgumentException("댓글 생성 실패. 대상 게시글이 없습니다."));

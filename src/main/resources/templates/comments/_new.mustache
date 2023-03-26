@@ -6,7 +6,11 @@
             <!-- 닉네임 입력 -->
             <div class="mb-3">
                 <label class="form-label">닉네임</label>
-                <input type="text" class="form-control form-control-sm" id="new-comment-nickname">
+                {{#member}}
+                <input type="text" class="form-control form-control-sm" id="new-comment-nickname"value="{{member.memberName}}"disabled="readonly">
+                {{/member}}
+
+
             </div>
             <!-- 댓글 본문 입력 -->
             <div class="mb-3">
@@ -19,7 +23,9 @@
             {{/article}}
             <!-- 전송 버튼 -->
             <button type="button" class="btn btn-outline-primary btn-sm" id="comment-create-btn">댓글 작성</button>
+
         </form>
+
     </div>
 </div>
 

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -27,9 +28,10 @@ public class CommentApiController {
     //댓글 생성
     @PostMapping("/api/articles/{articleId}/comments")
     public ResponseEntity<CommentDto> create(@PathVariable Long articleId,
-                                             @RequestBody CommentDto dto){
+                                             @RequestBody CommentDto dto,
+                                             HttpServletRequest request){
         //서비스에게 위임
-        CommentDto createDto = commentService.create(articleId, dto);
+        CommentDto createDto = commentService.create(articleId, dto,request);
         //결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(createDto);
     }

@@ -2,6 +2,18 @@
 {{>layouts/header}}
 <div id = "main">
     {{#article}}
+        <table class="table" style="table-layout: fixed">
+            <thead>
+            <tr>
+                <th scope="col">작성자</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="word-break: break-all">{{writer}}</td>
+
+            </tbody>
+        </table>
 <table class="table" style="table-layout: fixed">
     <thead>
     <tr>

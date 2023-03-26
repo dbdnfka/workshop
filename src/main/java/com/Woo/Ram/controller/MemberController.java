@@ -100,7 +100,7 @@ public class MemberController {
                 lvo.setMemberPw("");                    // 인코딩된 비밀번호 정보 지움
                 members = lvo;
 
-                int admin = members.getAdminCk();
+                int admin = lvo.getAdminCk();
                 //logger.info(String.valueOf(admin));
                 if (admin == 1) {
 //                    logger.info(lvo.toString());

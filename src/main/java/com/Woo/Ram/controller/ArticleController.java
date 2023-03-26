@@ -48,10 +48,14 @@ public class ArticleController {
 
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form,HttpServletRequest request){
-        HttpSession session = request.getSession();
-        MemberVO mem = (MemberVO) session.getAttribute("member");
-        form.setWriter(mem.getMemberName());
-        log.info(mem+"000");
+
+//            HttpSession session = request.getSession();
+//            MemberVO mem = (MemberVO) session.getAttribute("member");
+//            if(mem.getMemberName()!=null) {
+//                form.setWriter(mem.getMemberName());
+//            }else form.setWriter("방문자");
+
+
         log.info(form.toString()+"1");
         //System.out.println(form.toString());
 
