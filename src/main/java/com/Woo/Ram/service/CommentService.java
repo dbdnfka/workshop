@@ -10,17 +10,18 @@ import com.Woo.Ram.repository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 public class CommentService {
+    String nickname;
     @Autowired
     private CommentRepository commentRepository;
     @Autowired
@@ -68,10 +69,13 @@ public class CommentService {
 
     @Transactional
     public CommentDto delete(Long id) {
-        // 댓글 조회 및 예외 발생
+
+
         Comment target = commentRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("댓글 삭제 실패. 대상이 없습니다."));
 //        Comment target2 = commentRepository.findById()
+
+
         // 댓글 DB에서 삭제
         commentRepository.delete(target);
         // 삭제 댓글을 DTO로 반환

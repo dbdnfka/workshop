@@ -1,4 +1,4 @@
-
+{{#member}}
 <div class="card m-2" id="comments-new">
     <div class="card-body">
         <!-- 댓글 작성 폼-->
@@ -6,9 +6,9 @@
             <!-- 닉네임 입력 -->
             <div class="mb-3">
                 <label class="form-label">닉네임</label>
-                {{#member}}
+
                 <input type="text" class="form-control form-control-sm" id="new-comment-nickname"value="{{member.memberName}}"disabled="readonly">
-                {{/member}}
+
 
 
             </div>
@@ -28,7 +28,7 @@
 
     </div>
 </div>
-
+                {{/member}}{{^member}}로그인하셔야 댓글 작성하실 수 있습니다.{{/member}}
 <Script>
     {
         // 댓글 생성 버튼 변수화

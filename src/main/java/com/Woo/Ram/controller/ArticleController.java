@@ -49,24 +49,19 @@ public class ArticleController {
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form,HttpServletRequest request){
 
-//            HttpSession session = request.getSession();
-//            MemberVO mem = (MemberVO) session.getAttribute("member");
-//            if(mem.getMemberName()!=null) {
-//                form.setWriter(mem.getMemberName());
-//            }else form.setWriter("방문자");
+            HttpSession session = request.getSession();
+            MemberVO mem = (MemberVO) session.getAttribute("member");
+            if(mem.getMemberName()!=null) {
+                form.setWriter(mem.getMemberName());
+            }
 
-
-        log.info(form.toString()+"1");
         //System.out.println(form.toString());
 
         // 1. Dto를 변환 Entity로
         Article article = form.toEntity();
-        log.info(article.toString()+"2");
         //System.out.println(article.toString());
-
         //2. Repository에게 Entity를 DB안에 저장하게 함
         Article saved = articleRepository.save(article);
-        log.info(saved.toString()+"3");
         //System.out.println(saved.toString());
 
 
@@ -74,26 +69,33 @@ public class ArticleController {
         return "redirect:/articles/"+ saved.getId();
     }
     @GetMapping("/articles/{id}")
-    public String show(@PathVariable Long id, Model model) {
-
-        log.info("id = " + id);
-        // 1: id로 데이터를 가져옴
+    public String show(@PathVariable Long id, Model model,HttpServletRequest request) {
         Article articleEntity = articleRepository.findById(id).orElse(null);
         List<CommentDto> commentDtos = commentService.comments(id);
+        HttpSession session = request.getSession();
+        MemberVO mem = (MemberVO) session.getAttribute("member");
+        if (commentDtos != null && !commentDtos.isEmpty()) {
+        model.addAttribute("commentDtos",commentDtos);
+    }
+        // 1: id로 데이터를 가져옴
+        if(mem !=null){
+            model.addAttribute("user",mem);
+            if(articleEntity.getWriter().equals(mem.getMemberName())){
+                model.addAttribute("writer",true);
+            }
+
+        }
         articleRepository.updateView(id);
         // 2: 가져온 데이터를 모델에 등록
         model.addAttribute("article", articleEntity);
-        model.addAttribute("commentDtos",commentDtos);
+
         // 3: 보여줄 페이지를 설정
         return "articles/show";
     }
 
     @GetMapping("/articles")
-    public String index(Model model,HttpServletRequest request,RedirectAttributes rttr) throws Exception{
-//        HttpSession session = request.getSession();
-//        MemberVO members = (MemberVO) session.getAttribute("member");
-//        rttr.addFlashAttribute("members", members);
-//        System.out.println(members+"asdasda");
+    public String index(Model model) throws Exception{
+
         // 1. 모든 Article 가져오기
         List<Article> articleEntityList = articleRepository.findAll();
 
@@ -134,7 +136,7 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/{id}/delete")
-    public String delete(@PathVariable Long id, RedirectAttributes rttr, HttpServletRequest request) {
+    public String delete(@PathVariable Long id, RedirectAttributes rttr) {
         log.info("삭제 요청이 들어왔습니다!!");
         log.info(id.toString());
 

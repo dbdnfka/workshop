@@ -44,10 +44,11 @@
         </table>
 
     {{/article}}
-<a href="/articles/{{article.id}}/edit"class = "button primary small2">수정</a>
     <a href="/articles"class="button small2">뒤로</a>
+    {{#writer}}
+<a href="/articles/{{article.id}}/edit"class = "button primary small2"style="float:right">수정</a>
 <a href="/articles/{{article.id}}/delete" class="button small3" style="float:right">삭제</a>
-
+    {{/writer}}
     <br/><br/><br/><br/>
 <hr/>
 {{>comments/_comments}}

@@ -3,6 +3,7 @@ package com.Woo.Ram.api;
 import com.Woo.Ram.annotation.RunningTime;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Comment;
+import com.Woo.Ram.repository.CommentRepository;
 import com.Woo.Ram.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,13 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
 public class CommentApiController {
     @Autowired
     private CommentService commentService;
-
+    @Autowired
+    private CommentRepository commentRepository;
     //댓글 목록 조회
     @GetMapping("/api/articles/{articleId}/comments")
     public ResponseEntity<List<CommentDto>> comments(@PathVariable Long articleId){
@@ -48,6 +51,7 @@ public class CommentApiController {
     @RunningTime
     @DeleteMapping("/api/comments/{id}")
     public ResponseEntity<CommentDto> delete(@PathVariable Long id) {
+
         // 서비스에게 위임
         CommentDto deletedDto = commentService.delete(id);
         // 결과 응답
