@@ -77,7 +77,7 @@ public class ArticleController {
         if (commentDtos != null && !commentDtos.isEmpty()) {
         model.addAttribute("commentDtos",commentDtos);
     }
-        // 1: id로 데이터를 가져옴
+        // 1: id로 데이터를 가져옴2
         if(mem !=null){
             model.addAttribute("user",mem);
             if(articleEntity.getWriter().equals(mem.getMemberName())){
