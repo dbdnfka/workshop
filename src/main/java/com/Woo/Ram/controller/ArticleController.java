@@ -117,15 +117,18 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/update")
-    public String update(ArticleForm form){
-        log.info(form.toString());
+    public String update(ArticleForm form,HttpServletRequest request){
 
+        HttpSession session = request.getSession();
+        MemberVO mem = (MemberVO) session.getAttribute("member");
+        form.setWriter(mem.getMemberName());
         // 1. DTO를 엔티티로 변환
         Article articleEntity = form.toEntity();
-        log.info(articleEntity.toString());
+
         // 2. 엔티티를 DB로 저장
         // 2-1. DB에서 기존 데이터를 가져옴
         Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+
         // 2-2. 기존 데이터가 있다면, 값을 갱신
         if (target != null) {
             articleRepository.save(articleEntity);
