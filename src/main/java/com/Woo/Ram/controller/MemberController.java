@@ -101,12 +101,12 @@ public class MemberController {
                 members = lvo;
 
                 int admin = lvo.getAdminCk();
-                //logger.info(String.valueOf(admin));
                 if (admin == 1) {
 //                    logger.info(lvo.toString());
-                    rttr.addFlashAttribute("admin", admin);
+                    rttr.addAttribute("admin", admin);
+
                 }
-                rttr.addFlashAttribute("members", members);
+                logger.info(rttr.toString()+"aaaaaaaaaaaaaaa");
                 session.setAttribute("member", lvo);     // session에 사용자의 정보 저장
 
                 return "redirect:/";        // 메인페이지 이동
