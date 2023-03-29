@@ -16,9 +16,21 @@ import javax.servlet.http.HttpSession;
 public class BookController {
     private  static  final Logger logger = LoggerFactory.getLogger(BookController.class);
     @RequestMapping(value = "/member/loginmain", method = RequestMethod.GET)
-    public void mainPageGET() {
+    public void mainPageGET(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        MemberVO mem = (MemberVO) session.getAttribute("member");
 
-        logger.info("메인 페이지 진입");
+
+        if (mem != null) {
+
+            int admin = mem.getAdminCk();
+            logger.info(String.valueOf(admin));
+            if(admin == 0 )
+            {
+                model.addAttribute("admin", admin);
+            }
+
+        }
 
     }
 }

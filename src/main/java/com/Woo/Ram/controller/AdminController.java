@@ -51,12 +51,13 @@ public class AdminController {
     public void authorManageGET() throws Exception{
         logger.info("작가 관리 페이지 접속");
     }
-    @RequestMapping(value="authorEnroll.do", method = RequestMethod.POST)
+    @RequestMapping(value="/admin/authorEnroll.do", method = RequestMethod.POST)
     public String authorEnrollPOST(AuthorVO author, RedirectAttributes rttr) throws Exception{
-        logger.info("authorEnroll :" +  author);
+        logger.info("authorEnroll :" +  author.toString());
 
         authorService.authorEnroll(author);      // 작가 등록 쿼리 수행
         rttr.addFlashAttribute("enroll_result", author.getAuthorName());
-        return "redirect:/admin/authorManage";
+        return "redirect:/member/admin/authorManage";
     }
+
 }

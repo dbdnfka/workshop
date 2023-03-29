@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -87,7 +88,7 @@ public class MemberController {
         HttpSession session = request.getSession();
         String rawPw = "";
         String encodePw = "";
-        MemberVO members;
+
         MemberVO lvo = memberService.memberLogin(member);    // 제출한아이디와 일치하는 아이디 있는지
 
         if(lvo != null) {            // 일치하는 아이디 존재시
@@ -98,15 +99,7 @@ public class MemberController {
             if(true == pwEncoder.matches(rawPw, encodePw)) {        // 비밀번호 일치여부 판단
 
                 lvo.setMemberPw("");                    // 인코딩된 비밀번호 정보 지움
-                members = lvo;
 
-                int admin = lvo.getAdminCk();
-                if (admin == 1) {
-//                    logger.info(lvo.toString());
-                    rttr.addAttribute("admin", admin);
-
-                }
-                logger.info(rttr.toString()+"aaaaaaaaaaaaaaa");
                 session.setAttribute("member", lvo);     // session에 사용자의 정보 저장
 
                 return "redirect:/";        // 메인페이지 이동
