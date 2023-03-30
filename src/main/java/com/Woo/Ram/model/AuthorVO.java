@@ -1,6 +1,10 @@
 package com.Woo.Ram.model;
 
+import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class AuthorVO {
     public int getAuthorId() {
@@ -27,6 +31,11 @@ public class AuthorVO {
 
     public void setNationId(String nationId) {
         this.nationId = nationId;
+        if(nationId.equals("01")) {
+            this.nationName = "국내";
+        } else {
+            this.nationName = "국외";
+        }
     }
 
     public String getNationId() {
@@ -55,30 +64,17 @@ public class AuthorVO {
         this.authorIntro = authorIntro;
     }
 
-    public Date getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(Date regDate) {
-        this.regDate = regDate;
-    }
 
     /* 작가 소개 */
     private String authorIntro;
 
     /*등록 날짜*/
-    private Date regDate;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private LocalDate regDate;
 
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
 
     /* 수정 날짜 */
-    private Date updateDate;
-
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private LocalDate updateDate;
 
 }

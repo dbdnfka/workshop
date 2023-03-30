@@ -16,6 +16,44 @@
 {{>member/admin/header}}
             <div class="admin_content_wrap">
                 <div class="admin_content_subject"><span>작가 관리</span></div>
+                <div class="author_table_wrap">
+                    <table class="author_table">
+                        <thead>
+                        <tr>
+                            <td class="th_column_1">작가 번호</td>
+                            <td class="th_column_2">작가 이름</td>
+                            <td class="th_column_3">작가 국가</td>
+                            <td class="th_column_4">등록 날짜</td>
+                            <td class="th_column_5">수정 날짜</td>
+                        </tr>
+                        </thead>
+                        {{#list}}
+                            <tr>
+                                <td>{{authorId}} </td>
+                                <td>{{authorName}}</td>
+                                <td>{{nationId}}</td>
+                                <td>{{regDate}}</td>
+                                <td>{{updateDate}}</td>
+                            </tr>
+                        {{/list}}
+                    </table>
+                    <div class="pagination justify-content-center">
+                        <a href="?pageNum={{previous}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill">aaa</a>
+                        <a href="?pageNum={{next}}" role="button" class="btn btn-lg bi bi-caret-right-square-fill">bbb</a>
+                    </div>
+                </div>
+                <!-- 페이지 이동 인터페이스 영역 -->
+                <div class="pageMaker_wrap" >
+
+                    <ul class="pageMaker">
+
+                        {{! Page }}
+
+
+                    </ul>
+
+                </div>
+            </div>
             </div>
 {{>member/admin/footer}}
 
