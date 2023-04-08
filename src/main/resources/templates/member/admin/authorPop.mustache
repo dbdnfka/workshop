@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="/assets/css/admin/authorPop.css">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+</head>
+</head>
+<body>
+
+
+
+<div class="admin_content_subject"><span>작가 선택</span></div>
+<div class="author_table_wrap">
+
+    <table class="author_table">
+        <thead>
+        <tr>
+            <td class="th_column_1">작가 번호</td>
+            <td class="th_column_2">작가 이름</td>
+            <td class="th_column_3">작가 국가</td>
+        </tr>
+        </thead>
+        {{#list}}
+            <tr>
+                <td>{{authorId}} </td>
+                <td><a class="move" href={{authorId}} data-name={{authorName}}>{{authorName}}</a></td>
+                <td>{{nationId}}</td>
+            </tr>
+        {{/list}}
+    </table>
+    {{^list}}
+        <div class="table_empty">
+            등록된 작가가 없습니다.
+        </div>
+    {{/list}}
+    <div class="pagination justify-content-center">
+        <!-- 검색 영역 -->
+        <div class="search_wrap">
+            <form id="searchForm" action="/member/admin/authorPop" method="get">
+                <div class="search_input">
+                    <input type="text" name="keyword" value="{{keyword}}">
+                    <input type="hidden" name="pageNum" value="{{pageNum}}">
+                    <input type="hidden" name="amount" value="{{amount}}">
+                    <button class='btn search_btn'>검 색</button>
+                </div>
+            </form>
+        </div>
+        <button type="button" class="btn btn-outline-primary btn-sm" id="next"onclick="javascript:btn()">이전</button>
+        <button type="button" class="btn btn-outline-primary btn-sm" id="next"onclick="javascript:btn2()">다음</button>
+        <input type="hidden" id="index"value="{{pageNum}}">
+        <input type="hidden" id="total"value="{{total}}">
+    </div>
+</div>
+
+
+
+
+</div>    <!-- class="wrap" -->
+</div>    <!-- class="wrapper" -->
+<script>
+    function btn(){
+        const a ={index: document.getElementById("index").value
+        };
+        a.index--;
+        if(a.index==0){
+            alert("이전으로는 갈 수 없습니다.");
+            return false;
+        }
+
+        const link = '?pageNum='+a.index;
+
+        $('#index').attr("value",a.index);
+        location.href=link;
+
+
+    }
+    function btn2(){
+        const a ={index: document.getElementById("index").value,
+            total:document.getElementById("total").value};
+        a.index++;
+        if(a.index>a.total/5+1){
+            alert("다음 페이지가 없습니다.");
+            return false;
+        }
+
+        const link = '?pageNum='+a.index;
+        $('#index').attr("value",a.index);
+        location.href=link;
+
+    }
+    let searchForm = $('#searchForm');
+    /* 작거 검색 버튼 동작 */
+    $("#searchForm button").on("click", function(e){
+
+        e.preventDefault();
+
+        /* 검색 키워드 유효성 검사 */
+        if(!searchForm.find("input[name='keyword']").val()){
+            alert("키워드를 입력하십시오");
+            return false;
+        }
+
+        searchForm.find("input[name='pageNum']").val("1");
+
+        searchForm.submit();
+
+    });
+    /* 작가 선택 및 팝업창 닫기 */
+    $(".move").on("click", function(e){
+
+        e.preventDefault();
+
+        let authorId = $(this).attr("href");
+        let authorName= $(this).data("name");
+        $(opener.document).find("#authorId_input").val(authorId);
+        $(opener.document).find("#authorName_input").val(authorName);
+
+        window.close();
+
+    });
+</script>
+</body></html>

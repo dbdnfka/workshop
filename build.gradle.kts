@@ -36,7 +36,7 @@ dependencies {
 	implementation("net.nurigo:javaSDK:2.2")
 	implementation("javax.mail:mail:1.4.7")
 	implementation("org.springframework:spring-context-support:5.2.3.RELEASE")
-
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.12.1")
 }
 
 tasks.withType<Test> {
