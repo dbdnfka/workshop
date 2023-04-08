@@ -36,22 +36,15 @@ public class MemberController {
 
     @RequestMapping(value="/join", method=RequestMethod.POST)
     public String joinPOST(MemberVO member) throws Exception{
-        String rawPw = "";            // 인코딩 전 비밀번호
-        String encodePw = "";        // 인코딩 후 비밀번호
+        //비밀번호 인코딩
+        String rawPw = "";
+        String encodePw = "";
 
-        rawPw = member.getMemberPw();            // 비밀번호 데이터 얻음
-        encodePw = pwEncoder.encode(rawPw);        // 비밀번호 인코딩
-        member.setMemberPw(encodePw);            // 인코딩된 비밀번호 member객체에 다시 저장
+        rawPw = member.getMemberPw();
+        encodePw = pwEncoder.encode(rawPw);
+        member.setMemberPw(encodePw);
 
-        /* 회원가입 쿼리 실행 */
         memberService.memberJoin(member);
-//        logger.info("join 진입");
-//        logger.info(member.toString());
-//        // 회원가입 서비스 실행
-//        memberService.memberJoin(member);
-//
-//        logger.info("join Service 성공");
-
         return "redirect:/main";
 
     }

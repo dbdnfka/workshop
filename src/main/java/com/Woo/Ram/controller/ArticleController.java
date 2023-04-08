@@ -21,13 +21,13 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@Slf4j //로깅을 위한 골뱅이(어노테이션)
+@Slf4j
 public class ArticleController {
 
 
-    @Autowired // 스프링 부트가 미리 생성해 놓은 객체를 가져다가 자동 연결
+    @Autowired
     private ArticleRepository articleRepository;
-    @Autowired // 스프링 부트가 미리 생성해 놓은 객체를 가져다가 자동 연결
+    @Autowired
     private ArticleRepository commentRepository;
     @Autowired
     private CommentService commentService;
@@ -39,10 +39,6 @@ public class ArticleController {
 
     @RequestMapping(value= "/main", method = RequestMethod.GET)
     public String index2(Model model){
-//        List<Article> articleEntityList = articleRepository.findAll();
-//
-//        // 2. 가져온 article 묶음 뷰로 전달
-//        model.addAttribute("articleList", articleEntityList);
         return "articles/main";
     }
 
@@ -63,9 +59,6 @@ public class ArticleController {
         //2. Repository에게 Entity를 DB안에 저장하게 함
         Article saved = articleRepository.save(article);
         //System.out.println(saved.toString());
-
-
-
         return "redirect:/articles/"+ saved.getId();
     }
     @GetMapping("/articles/{id}")
@@ -146,10 +139,9 @@ public class ArticleController {
         // 1: 삭제 대상을 가져옴
         Article target = articleRepository.findById(id).orElse(null);
         List A = commentService.delete2(id);
-        log.info(A.toString());log.info(A.toString());log.info(A.toString());log.info(A.toString());
 //        CommentDto deletedDto = commentService.delete(id);
 //        ResponseEntity.status(HttpStatus.OK).body(deletedDto);
-        log.info(target.toString());
+//        log.info(target.toString());
         if(A.size()>0){
             rttr.addFlashAttribute("msg","댓글이 있는 게시글은 삭제할 수 없습니다.");
             return "redirect:/articles/{id}";
