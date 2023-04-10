@@ -50,15 +50,8 @@ public class ArticleController {
             if(mem.getMemberName()!=null) {
                 form.setWriter(mem.getMemberName());
             }
-
-        //System.out.println(form.toString());
-
-        // 1. Dto를 변환 Entity로
         Article article = form.toEntity();
-        //System.out.println(article.toString());
-        //2. Repository에게 Entity를 DB안에 저장하게 함
         Article saved = articleRepository.save(article);
-        //System.out.println(saved.toString());
         return "redirect:/articles/"+ saved.getId();
     }
     @GetMapping("/articles/{id}")
@@ -134,24 +127,18 @@ public class ArticleController {
     @GetMapping("/articles/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes rttr) {
         log.info("삭제 요청이 들어왔습니다!!");
-        log.info(id.toString());
 
-        // 1: 삭제 대상을 가져옴
         Article target = articleRepository.findById(id).orElse(null);
-        List A = commentService.delete2(id);
-//        CommentDto deletedDto = commentService.delete(id);
-//        ResponseEntity.status(HttpStatus.OK).body(deletedDto);
-//        log.info(target.toString());
-        if(A.size()>0){
+        
+        // 댓글 있는 게시물 삭제 금지
+        List Commentlist = commentService.commentdelete(id);
+        if(Commentlist.size()>0){
             rttr.addFlashAttribute("msg","댓글이 있는 게시글은 삭제할 수 없습니다.");
             return "redirect:/articles/{id}";
         }
-        // 2: 대상을 삭제
         else{
         if (target != null) {
-
             articleRepository.delete(target);
-
             rttr.addFlashAttribute("msg","삭제가 완료되었습니다.");
         }}
         // 3: 결과 페이지로 리다이렉트

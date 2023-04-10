@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class CommentService {
-    String nickname;
     @Autowired
     private CommentRepository commentRepository;
     @Autowired
@@ -82,17 +81,9 @@ public class CommentService {
         return CommentDto.createCommentDto(target);
     }
     @Transactional
-    public List<Comment> delete2(Long id) {
-        // 댓글 조회 및 예외 발생
+    public List<Comment> commentdelete(Long id) {
 
         List<Comment> target2 = commentRepository.findByArticleId(id);
-        log.info(target2.toString());log.info(target2.toString());log.info(target2.toString());log.info(target2.toString());
-//        Comment target = commentRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("댓글 삭제 실패. 대상이 없습니다."));
-//        Comment target2 = commentRepository.findById()
-        // 댓글 DB에서 삭제
-
-        // 삭제 댓글을 DTO로 반환
         return target2;
     }
 }
