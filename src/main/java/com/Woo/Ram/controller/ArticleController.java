@@ -87,6 +87,7 @@ public class ArticleController {
 
         // 2. 가져온 article 묶음 뷰로 전달
         model.addAttribute("articleList", articleEntityList);
+        log.info(articleEntityList.toString()+"11111");
         // 3. 뷰 페이지를 설정
         return "articles/index";
     }
