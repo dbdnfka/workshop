@@ -1,5 +1,6 @@
 package com.Woo.Ram.controller;
 
+import com.Woo.Ram.Config.auth.dto.SessionUser;
 import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
@@ -146,8 +147,14 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
-    @GetMapping("/copy")
-    public String index3(Model model){
-        return "main/main_copy";
+    @GetMapping("/")
+    public String Login(Model model,HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        SessionUser user = (SessionUser) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+        return "/";
     }
 }

@@ -7,24 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class AuthorVO {
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
 
     /* 작가 아이디 */
     private int authorId;
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
 
     /* 작가 이름 */
     private String authorName;
@@ -38,16 +23,34 @@ public class AuthorVO {
         }
     }
 
-    public String getNationId() {
-        return nationId;
-    }
-
     /* 국가 id */
     private String nationId;
 
     /* 작가 국가 */
     private String nationName;
 
+
+    /* 작가 소개 */
+    private String authorIntro;
+
+    /*등록 날짜*/
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private LocalDate regDate;
+
+
+    /* 수정 날짜 */
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private LocalDate updateDate;
+    public String getAuthorName() {
+        return authorName;
+    }
+    public String getNationId() {
+        return nationId;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
     public String getNationName() {
         return nationName;
     }
@@ -63,18 +66,13 @@ public class AuthorVO {
     public void setAuthorIntro(String authorIntro) {
         this.authorIntro = authorIntro;
     }
+    public int getAuthorId() {
+        return authorId;
+    }
 
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
 
-    /* 작가 소개 */
-    private String authorIntro;
-
-    /*등록 날짜*/
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private LocalDate regDate;
-
-
-    /* 수정 날짜 */
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private LocalDate updateDate;
 
 }

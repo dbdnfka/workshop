@@ -2,6 +2,7 @@ package com.Woo.Ram.repository;
 
 import com.Woo.Ram.entity.Article;
 import com.Woo.Ram.entity.Comment;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -13,7 +14,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface ArticleRepository extends CrudRepository<Article, Long> {
+public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Override
     @Query("SELECT p from Article p order by p.id desc ")
