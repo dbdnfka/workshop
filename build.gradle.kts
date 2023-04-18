@@ -17,6 +17,7 @@ dependencies {
 	implementation("org.chiknrice:concordion-spring-runner:1.0.0")
 	implementation("org.mybatis.spring.boot:mybatis-spring-boot:3.0.1")
 	implementation ("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0")
+	implementation("org.testng:testng:7.1.0")
 	//PostgreSQL 드라이버 추가
 	runtimeOnly("org.postgresql:postgresql")
 
@@ -29,6 +30,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-parent:2.0.5.RELEASE")
 	implementation ("org.springframework.boot:spring-boot-starter-oauth2-client")
+
 	implementation(group = "org.apache.httpcomponents", name= "httpclient", version= "4.5.13")
 
 	runtimeOnly("com.h2database:h2")

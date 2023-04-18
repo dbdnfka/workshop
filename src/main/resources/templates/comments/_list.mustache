@@ -53,7 +53,7 @@
                     <input type="hidden" id="edit-comment-id">
                     <input type="hidden" id="edit-comment-article-id">
 
-                    <input type="hidden" id="sessionUserId" value="{{#member}}{{member.memberName}}{{/member}}">
+                    <input type="hidden" id="sessionmemberId" value="{{#member}}{{member.memberName}}{{/member}}">
                     <!-- 전송버튼 -->
                     <button type="button" class="btn btn-outline-primary btn-sm" id="comment-update-btn">수정 완료</button>
                 </form>
@@ -98,13 +98,13 @@
                 nickname: document.querySelector("#edit-comment-nickname").value,
                 body: document.querySelector("#edit-comment-body").value,
                 article_id: document.querySelector("#edit-comment-article-id").value,
-                // writerUserId: document.querySelector('#writerUserId').value,
-                sessionUserId: document.querySelector('#sessionUserId').value
+                // writermemberId: document.querySelector('#writermemberId').value,
+                sessionmemberId: document.querySelector('#sessionmemberId').value
             };
-            // console.log("commentWriterID : " + comment.writerUserId);
-            // console.log("sessionUserID : " + comment.sessionUserId);
+            // console.log("commentWriterID : " + comment.writermemberId);
+            // console.log("sessionmemberID : " + comment.sessionmemberId);
             // console.log(comment);
-            if (comment.nickname !== comment.sessionUserId) {
+            if (comment.nickname !== comment.sessionmemberId) {
                 alert("본인이 작성한 댓글만 수정 가능합니다.");
                 return false;
             }
@@ -141,12 +141,12 @@
                 // 삭제 댓글 id 가져오기
                 const commentName = commentDeleteBtn.getAttribute("data-comment-nickname");
                 console.log(commentName);
-                const sessionName = {sessionUserId: document.querySelector('#sessionUserId').value}
+                const sessionName = {sessionmemberId: document.querySelector('#sessionmemberId').value}
                 console.log(sessionName);
                 const commentId = commentDeleteBtn.getAttribute("data-comment-id");
                 console.log(`삭제 버튼 클릭: ${commentId}번 댓글`);
                 // 삭제 API 호출 및 처리
-                if(commentName!==sessionName.sessionUserId){
+                if(commentName!==sessionName.sessionmemberId){
                     alert("본인이 작성한 댓글만 삭제 가능합니다.");
                     return false;
                 }

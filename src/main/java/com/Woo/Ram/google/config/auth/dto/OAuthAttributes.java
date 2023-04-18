@@ -1,7 +1,7 @@
-package com.Woo.Ram.Config.auth.dto;
+package com.Woo.Ram.google.config.auth.dto;
 
-import com.Woo.Ram.User.Role;
-import com.Woo.Ram.User.User;
+import com.Woo.Ram.google.GoogleUser;
+import com.Woo.Ram.google.Role;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -15,7 +15,8 @@ public class OAuthAttributes {
     private String email;
     private String picture;
 
-    @Builder
+    @
+            Builder
     public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email, String picture) {
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
@@ -24,11 +25,11 @@ public class OAuthAttributes {
         this.picture = picture;
     }
 
-    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
+    public  static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
         return ofGoogle(userNameAttributeName, attributes);
     }
 
-    public static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
+    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
@@ -38,8 +39,8 @@ public class OAuthAttributes {
                 .build();
     }
 
-    public User toEntity(){
-        return User.builder()
+    public GoogleUser toEntity() {
+        return GoogleUser.builder()
                 .name(name)
                 .email(email)
                 .picture(picture)

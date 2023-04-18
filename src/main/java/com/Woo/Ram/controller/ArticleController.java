@@ -1,15 +1,13 @@
 package com.Woo.Ram.controller;
 
-import com.Woo.Ram.Config.auth.dto.SessionUser;
 import com.Woo.Ram.dto.ArticleForm;
 import com.Woo.Ram.dto.CommentDto;
 import com.Woo.Ram.entity.Article;
-import com.Woo.Ram.entity.Comment;
+import com.Woo.Ram.google.config.auth.dto.SessionUser;
 import com.Woo.Ram.model.MemberVO;
 import com.Woo.Ram.repository.ArticleRepository;
-import com.Woo.Ram.repository.CommentRepository;
-import com.Woo.Ram.service.ArticleService;
 import com.Woo.Ram.service.CommentService;
+import com.sun.jmx.interceptor.DefaultMBeanServerInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,11 +35,6 @@ public class ArticleController {
         return "articles/new";
     }
 
-
-    @RequestMapping(value= "/main", method = RequestMethod.GET)
-    public String index2(Model model){
-        return "articles/main";
-    }
 
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form,HttpServletRequest request){
@@ -88,7 +81,7 @@ public class ArticleController {
 
         // 2. 가져온 article 묶음 뷰로 전달
         model.addAttribute("articleList", articleEntityList);
-        log.info(articleEntityList.toString()+"11111");
+
         // 3. 뷰 페이지를 설정
         return "articles/index";
     }
@@ -148,13 +141,12 @@ public class ArticleController {
     }
 
     @GetMapping("/")
-    public String Login(Model model,HttpServletRequest request) {
+    public void index(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
-        SessionUser user = (SessionUser) session.getAttribute("user");
-
-        if (user != null) {
+        if (session != null) {
+            SessionUser user = (SessionUser) session.getAttribute("user");
             model.addAttribute("userName", user.getName());
         }
-        return "/";
+
     }
 }

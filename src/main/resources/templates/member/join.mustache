@@ -43,11 +43,11 @@
                 </div>
                 <span class="final_pwck_ck">비밀번호 확인을 입력해주세요.</span>
             </div>
-            <div class="user_wrap">
-                <div class="user_name">이름</div>
-                <div class="user_input_box">
+            <div class="member_wrap">
+                <div class="member_name">이름</div>
+                <div class="member_input_box">
 
-                    <input class="user_input" name="memberName">
+                    <input class="member_input" name="memberName">
                 </div>
                 <span></span>
             </div>
@@ -132,7 +132,7 @@
             var id = $('.id_input').val();                 // id 입력란
             var pw = $('.pw_input').val();                // 비밀번호 입력란
             var pwck = $('.pwck_input').val();            // 비밀번호 확인 입력란
-            var name = $('.user_input').val();            // 이름 입력란
+            var name = $('.member_input').val();            // 이름 입력란
             var mail = $('.mail_input').val();// 이메일 입력란
             var warnMsg = $(".mail_input_box_warn"); //이메일 입력 경고글
             var addr = $('.address_input_3').val();        // 주소 입력란
@@ -241,14 +241,14 @@
                 var extraAddr = ''; // 참고항목 변수
                 var addr1 = '';
                 //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                if (data.memberSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                     addr = data.roadAddress;
                 } else { // 사용자가 지번 주소를 선택했을 경우(J)
                     addr = data.jibunAddress;
                 }
 
                 // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
+                if(data.memberSelectedType === 'R'){
                     // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
                     if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){

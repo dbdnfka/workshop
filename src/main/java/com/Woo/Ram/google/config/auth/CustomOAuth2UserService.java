@@ -1,10 +1,11 @@
-package com.Woo.Ram.Config.auth;
+package com.Woo.Ram.google.config.auth;
 
-import com.Woo.Ram.Config.auth.dto.OAuthAttributes;
-import com.Woo.Ram.Config.auth.dto.SessionUser;
-import com.Woo.Ram.User.User;
-import com.Woo.Ram.User.UserRepository;
+import com.Woo.Ram.google.GoogleUser;
+import com.Woo.Ram.google.UserRepository;
+import com.Woo.Ram.google.config.auth.dto.OAuthAttributes;
+import com.Woo.Ram.google.config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -24,37 +25,30 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     private final HttpSession httpSession;
 
     @Override
+
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
-        String registrationId = userRequest
-                .getClientRegistration()
-                .getRegistrationId();
+        String registrationId = userRequest.getClientRegistration().getRegistrationId();
+        String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
 
-        String userNameAttributeName = userRequest
-                .getClientRegistration()
-                .getProviderDetails()
-                .getUserInfoEndpoint()
-                .getUserNameAttributeName();
+        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName,oAuth2User.getAttributes());
+        GoogleUser googleUser = saveOrUpdate(attributes);
 
-        User user = saveOrUpdate(attributes);
+        httpSession.setAttribute("user", new SessionUser(googleUser));
 
-        httpSession.setAttribute("user", new SessionUser(user));
-        return new DefaultOAuth2User(
-                Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
+        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(googleUser.getRoleKey())),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
-
-
     }
 
-    private User saveOrUpdate(OAuthAttributes attributes) {
-        User user = userRepository.findByEmail(attributes.getEmail())
+    private GoogleUser saveOrUpdate(OAuthAttributes attributes) {
+        GoogleUser googleUser = userRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
-        return userRepository.save(user);
+
+        return userRepository.save(googleUser);
     }
 }

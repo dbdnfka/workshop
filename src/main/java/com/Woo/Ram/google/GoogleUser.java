@@ -1,18 +1,18 @@
-package com.Woo.Ram.User;
+package com.Woo.Ram.google;
 
 import com.Woo.Ram.entity.Date;
-import lombok.*;
-
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor //디폴트 생성자 추가
-@ToString
 @Entity
-public class User extends Date {
+public class GoogleUser extends Date {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,17 +31,17 @@ public class User extends Date {
     private Role role;
 
     @Builder
-    public User(Long id, String name, String email, Role role,String picture) {
-        this.id = id;
+    public GoogleUser(String name, String email, String picture, Role role) {
         this.name = name;
         this.email = email;
-        this.role = role;
         this.picture = picture;
+        this.role = role;
     }
 
-    public User update(String name, String picture) {
+    public GoogleUser update(String name, String picture) {
         this.name = name;
-        this.picture  = picture;
+        this.picture = picture;
+
         return this;
     }
 
