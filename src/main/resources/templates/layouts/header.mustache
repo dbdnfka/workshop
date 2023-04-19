@@ -17,8 +17,11 @@
 
     {{/member}}
     {{#member}}
+        {{#userName}}
         <li>{{member.memberName}}님 안녕하세요.</li>
+            <li>{{userName}}님 안녕하세요.</li>
         <h4><a href="/member/logout.do">로그아웃</a></h4>
+            {{/userName}}
     {{/member}}
     <div class="inner">
         <br /><br /><br /><br /><br />
@@ -33,13 +36,6 @@
         <br /><br />
         <h3><a href="/member/loginmain">쇼핑몰 *제작중* </a></h3>
 
-        {{#userName}}
-            Logged in as : <span id="googleUser">{{userName}}</span>
-            <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-        {{/userName}}
-        {{^userName}}
-            <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-        {{/userName}}
 
     </div>
 </header>

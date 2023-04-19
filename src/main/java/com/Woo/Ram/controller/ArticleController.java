@@ -140,13 +140,14 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
-    @GetMapping("/")
-    public void index(Model model, HttpServletRequest request){
+    @GetMapping("/googleLogin")
+    public String index(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
+        SessionUser user = (SessionUser) session.getAttribute("user");
         if (session != null) {
-            SessionUser user = (SessionUser) session.getAttribute("user");
+
             model.addAttribute("userName", user.getName());
         }
-
+        return "redirect:/";
     }
 }
