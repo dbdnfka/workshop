@@ -134,7 +134,7 @@ public class ArticleController {
         else{
         if (target != null) {
             articleRepository.delete(target);
-            rttr.addFlashAttribute("msg","삭제가 완료되었습니다.");
+            rttr.addFlashAttribute("msg","삭제가 완료되었습니다. ");
         }}
         // 3: 결과 페이지로 리다이렉트
         return "redirect:/articles";
